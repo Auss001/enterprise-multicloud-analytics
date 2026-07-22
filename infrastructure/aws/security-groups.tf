@@ -100,3 +100,14 @@ resource "aws_vpc_security_group_ingress_rule" "database_from_rds_proxy" {
   description = "Allow PostgreSQL traffic from RDS Proxy."
 }
 
+# Application workloads can reach AWS services over HTTPS
+resource "aws_vpc_security_group_egress_rule" "application_https_outbound" {
+  security_group_id = aws_security_group.application.id
+
+  ip_protocol = "tcp"
+  from_port   = 443
+  to_port     = 443
+  cidr_ipv4   = "0.0.0.0/0"
+
+  description = "Allow application workloads to reach AWS services over HTTPS."
+}

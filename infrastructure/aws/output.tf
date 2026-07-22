@@ -80,3 +80,31 @@ output "database_master_secret_arn" {
   description = "ARN of the RDS-managed Secrets Manager secret."
   value       = aws_db_instance.postgresql.master_user_secret[0].secret_arn
 }
+output "ecr_repository_url" {
+  description = "Backend ECR repository URL."
+  value       = aws_ecr_repository.backend.repository_url
+}
+
+output "ecr_repository_name" {
+  description = "Backend ECR repository name."
+  value       = aws_ecr_repository.backend.name
+}
+output "cloudwatch_log_group_name" {
+  description = "CloudWatch Log Group for the backend."
+
+  value = aws_cloudwatch_log_group.backend.name
+}
+output "ecs_execution_role_arn" {
+  description = "IAM role used by ECS to pull images and publish logs."
+  value       = aws_iam_role.ecs_execution.arn
+}
+
+output "ecs_task_role_arn" {
+  description = "IAM role assumed by the backend application container."
+  value       = aws_iam_role.ecs_task.arn
+}
+output "ecs_task_definition_arn" {
+  description = "Backend ECS task definition."
+
+  value = aws_ecs_task_definition.backend.arn
+}
