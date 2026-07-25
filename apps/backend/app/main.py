@@ -10,8 +10,10 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:8080",
-        "http://127.0.0.1:8080",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "https://lemon-moss-02b6abe10.7.azurestaticapps.net",
+
     ],
     allow_credentials=True,
     allow_methods=["*"],
