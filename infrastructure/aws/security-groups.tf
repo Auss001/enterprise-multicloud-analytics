@@ -1,11 +1,8 @@
 # Application/Lambda security group
 resource "aws_security_group" "application" {
   name        = "${local.name_prefix}-application-sg"
-  description = "Controls network traffic for application workloads and Lambda functions."
+  description = "Controls network traffic for application workloads."
   vpc_id      = aws_vpc.main.id
-
-  ingress = []
-  egress  = []
 
   tags = merge(
     local.common_tags,
@@ -15,6 +12,15 @@ resource "aws_security_group" "application" {
     }
   )
 }
+resource "aws_vpc_security_group_egress_rule" "application_all_outbound" {
+  security_group_id = aws_security_group.application.id
+
+  ip_protocol = "-1"
+
+  cidr_ipv4 = "0.0.0.0/0"
+}
+
+
 
 # RDS Proxy security group
 resource "aws_security_group" "rds_proxy" {

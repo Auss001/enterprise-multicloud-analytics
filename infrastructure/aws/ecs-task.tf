@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "backend" {
     {
       name = "backend"
 
-      image = "${aws_ecr_repository.backend.repository_url}:v1"
+      image = "${aws_ecr_repository.backend.repository_url}:v2"
 
       essential = true
 
@@ -31,12 +31,31 @@ resource "aws_ecs_task_definition" "backend" {
         }
       ]
 
+      environment = [
+        {
+          name  = "GCP_PROJECT_ID"
+          value = "flawless-window-499104-u9"
+        },
+        {
+          name  = "BQ_DATASET_ID"
+          value = "ema_dev_events"
+        },
+        {
+          name  = "BQ_TABLE_ID"
+          value = "raw_events"
+        },
+        {
+          name  = "GCP_SERVICE_ACCOUNT_JSON"
+          value = var.gcp_service_account_json
+        }
+      ]
+
       logConfiguration = {
         logDriver = "awslogs"
 
         options = {
           awslogs-group         = aws_cloudwatch_log_group.backend.name
-          awslogs-region        = var.aws_region
+          awslogs-region        = "eu-north-1"
           awslogs-stream-prefix = "backend"
         }
       }

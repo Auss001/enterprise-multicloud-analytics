@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Tri-Cloud Analytics Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Enterprise Tri-Cloud Analytics Platform</h1>
+        <p>Azure • AWS • Google Cloud</p>
+        <div id="status" class="offline">Checking backend...</div>
+    </header>
+
+    <section class="card">
+        <h2>Submit Event</h2>
+
+        <form id="eventForm">
+
+            <input
+                id="service"
+                type="text"
+                placeholder="Service"
+                required>
+
+            <input
+                id="event"
+                type="text"
+                placeholder="Event"
+                required>
+
+            <select id="severity">
+                <option>INFO</option>
+                <option>WARNING</option>
+                <option>ERROR</option>
+                <option>CRITICAL</option>
+            </select>
+
+            <textarea
+                id="description"
+                placeholder="Description"></textarea>
+
+            <button type="submit">
+                Submit Event
+            </button>
+
+        </form>
+    </section>
+
+    <section class="card">
+
+        <h2>Recent Events</h2>
+
+        <table>
+
+            <thead>
+
+            <tr>
+                <th>Service</th>
+                <th>Event</th>
+                <th>Severity</th>
+                <th>Description</th>
+                <th>Created</th>
+            </tr>
+
+            </thead>
+
+            <tbody id="eventsTable"></tbody>
+
+        </table>
+
+    </section>
+
+    <footer>
+
+        <h3>Architecture</h3>
+
+        <p><strong>Frontend</strong> Azure Static Web Apps</p>
+        <p><strong>API</strong> AWS ECS Fargate + ALB</p>
+        <p><strong>Analytics</strong> Google BigQuery</p>
+
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

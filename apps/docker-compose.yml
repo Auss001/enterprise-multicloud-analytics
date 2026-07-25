@@ -1,0 +1,12 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ema-backend:v1
+    container_name: ema-backend
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENVIRONMENT: development
+    restart: unless-stopped
