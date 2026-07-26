@@ -807,3 +807,4 @@ The project showcases:
 - Cost-aware cloud operations
 
 Beyond delivering a working application, the project reflects the complete engineering lifecycle—from architecture and deployment to debugging, documentation, optimization, and presentation—making it a comprehensive demonstration of practical cloud engineering skills.
+
